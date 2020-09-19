@@ -1,0 +1,21 @@
+enclave{
+    trusted {
+        public void ecall_p2p_maintain_task(void);
+        public void ecall_p2p_joined_successful_once(void);
+        public void ecall_p2p_fetch_successor_list(void);
+        public void ecall_p2p_check_successor_failure_once(void);
+        public void ecall_p2p_check_predecessor_failure_once(void);
+        public void ecall_p2p_verify_successor_failure_once(void);
+        public void ecall_p2p_verify_predecessor_failure_once(void);
+    };
+    untrusted {
+        void ocall_sgx_addevent_p2p_maintain_task([in, size=n]struct timeval *interval, size_t n, int boottime);
+        void ocall_sgx_addevent_p2p_joined_successful_once([in, size=n]struct timeval *interval, size_t n);
+        void ocall_sgx_addevent_p2p_fetch_successor_list([in, size=n]struct timeval *interval, size_t n);
+        void ocall_sgx_addevent_p2p_check_successor_failure_once([in, size=n]struct timeval *interval, size_t n);
+        void ocall_sgx_addevent_p2p_check_predecessor_failure_once([in, size=n] struct timeval *interval, size_t n);
+        void ocall_sgx_addevent_p2p_verify_successor_failure_once([in, size=n] struct timeval *interval, size_t n);
+        void ocall_sgx_addevent_p2p_verify_predecessor_failure_once([in, size=n] struct timeval *interval, size_t n);
+
+    };
+};

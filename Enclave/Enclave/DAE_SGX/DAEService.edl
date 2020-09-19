@@ -1,0 +1,8 @@
+enclave{
+    trusted{
+
+    };
+    untrusted{
+        void ocall_sgx_libevent_start();
+    };
+};

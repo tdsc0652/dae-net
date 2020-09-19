@@ -1,0 +1,33 @@
+enclave{
+    include "orconfig.h"
+    trusted{
+        public int DAE_start([in, size=n] void* config, size_t n);
+		public void enclave_func_caller1([in, size=args_len]void *args, int args_len);
+    };
+    untrusted{
+        void ocall_log_info([in, string] const char* str);
+        void ocall_log_warning([in, string] const char* str);
+        void ocall_log_error([in, string] const char* str);
+        void ocall_log_fatal([in, string] const char* str);
+        int ocall_sgx_sendto(int s, [in, size =len]const void *msg, size_t len, int flags, [in,size =tolen]const struct sockaddr *to, size_t tolen); 
+		int ocall_sgx_recvfrom(int s, [out, size=len]void *msg, size_t len, int flags, [out, size=frlen]struct sockaddr *fr, size_t frlen, [in, out, size=4]int *in_len);
+
+		int ocall_sgx_pthread_create_call_back_func1([in, size=port_len]void *port, size_t port_len);
+		int ocall_sgx_pthread_detach(int pid);
+		int ocall_sgx_pthread_join(int pid);
+
+		uint32_t ocall_sgx_randombytes_random();
+		void ocall_sgx_run_as_daemon();
+
+
+        int ocall_sgx_rand();
+        void ocall_sgx_srand();
+
+        void ocall_sgx_sleep(unsigned int s);
+        int ocall_sgx_clock_gettime(clockid_t clk_id, [in, out, size=tp_size]struct timespec *tp, int tp_size);
+        void ocall_sgx_exit(int exit_status);
+
+
+
+    };
+};

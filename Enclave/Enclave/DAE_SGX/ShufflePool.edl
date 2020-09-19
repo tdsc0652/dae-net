@@ -1,0 +1,9 @@
+enclave{
+    trusted{
+        public void ecall_shuffle_send_batch();
+    };
+    untrusted{
+        void ocall_sgx_shuffle_send_batch([in, size=n]struct timeval *interval, size_t n);
+
+    };
+};
